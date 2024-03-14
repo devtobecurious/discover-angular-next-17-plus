@@ -1,0 +1,100 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "videotheque-sw": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/videotheque-sw",
+      "sourceRoot": "projects/videotheque-sw/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/videotheque-sw",
+            "index": "projects/videotheque-sw/src/index.html",
+            "browser": "projects/videotheque-sw/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/videotheque-sw/tsconfig.app.json",
+            "assets": [
+              "projects/videotheque-sw/src/favicon.ico",
+              "projects/videotheque-sw/src/assets"
+            ],
+            "styles": [
+              "projects/videotheque-sw/src/styles.css"
+            ],
+            "scripts": [],
+            "server": "projects/videotheque-sw/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/videotheque-sw/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "videotheque-sw:build:production"
+            },
+            "development": {
+              "buildTarget": "videotheque-sw:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "videotheque-sw:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/videotheque-sw/tsconfig.spec.json",
+            "assets": [
+              "projects/videotheque-sw/src/favicon.ico",
+              "projects/videotheque-sw/src/assets"
+            ],
+            "styles": [
+              "projects/videotheque-sw/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  }
+}
