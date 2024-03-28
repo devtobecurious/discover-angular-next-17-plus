@@ -14,7 +14,11 @@ export class ListMoviesComponent {
   store = inject(moviesStore);
   toEditMovie = signal<Movie | undefined>(undefined);
 
-  editOne(movie: Movie) {
+  editOne(movie: Movie): void {
     this.toEditMovie.set(movie);
+  }
+
+  cancelEdition(): void {
+    this.toEditMovie.set(undefined);
   }
 }

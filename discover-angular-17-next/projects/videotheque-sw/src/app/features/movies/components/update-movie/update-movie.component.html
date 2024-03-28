@@ -1,1 +1,4 @@
-<app-child-edit-movie buttonSaveTitle="Mettre à jour" (requestToSave)="updateOne($event)" ></app-child-edit-movie>
+<app-child-edit-movie buttonSaveTitle="Mettre à jour"
+                      (requestToSave)="updateOne($event)"
+                      (requestToCancel)="cancelUpdate()"
+                      ></app-child-edit-movie>

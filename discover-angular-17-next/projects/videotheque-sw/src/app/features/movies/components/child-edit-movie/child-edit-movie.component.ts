@@ -17,10 +17,15 @@ export class ChildEditMovieComponent {
   });
 
   requestToSave = output<Movie>();
+  requestToCancel = output();
   buttonSaveTitle = input.required();
 
   saveToParent(): void {
     console.info('save to parent ?');
     this.requestToSave.emit(this.movieForm.value as Movie);
+  }
+
+  clickToCancel(): void {
+    this.requestToCancel.emit();
   }
 }

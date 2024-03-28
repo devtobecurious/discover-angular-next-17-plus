@@ -18,6 +18,14 @@ export class CreateMovieComponent {
 
   createOne(movie: Movie): void {
     this.store.addOne(movie);
+    this.navigateToList();
+  }
+
+  cancelAndRedirect(): void {
+    this.navigateToList();
+  }
+
+  private navigateToList(): void {
     this.router.navigate(['movies']);
   }
 }
