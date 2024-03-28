@@ -1,5 +1,6 @@
-import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
+import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
 import { Movie, Movies } from "./models";
+import { computed } from "@angular/core";
 
 export interface MoviesState {
   items: Movies,
@@ -23,5 +24,8 @@ export const moviesStore = signalStore(
       patchState(store, {items: [...store.items(), item]})
       patchState(store, {loading: false});
     }
+  })),
+  withComputed(store => ({
+    empty: computed(() => store.items().length === 0)
   }))
 );

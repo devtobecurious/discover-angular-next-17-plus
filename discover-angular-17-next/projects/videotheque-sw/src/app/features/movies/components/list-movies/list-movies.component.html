@@ -1,3 +1,9 @@
+<h1>Liste de mes films préférés</h1>
+
+@if (store.empty()) {
+  <i>Aucun film pour l'instant ...</i>
+}
+
 @for (movie of store.items(); track movie.id) {
   <div>
     <h2>{{movie.title}}</h2>

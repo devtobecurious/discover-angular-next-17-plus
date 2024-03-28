@@ -1,4 +1,4 @@
 <form [formGroup]="movieForm" (submit)="saveToParent()">
   <input name="title" formControlName="title">
-  <button></button>
+  <button type="submit">{{ buttonSaveTitle() }}</button>
 </form>
