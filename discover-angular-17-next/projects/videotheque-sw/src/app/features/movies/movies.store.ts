@@ -23,6 +23,20 @@ export const moviesStore = signalStore(
       patchState(store, {loading: true});
       patchState(store, {items: [...store.items(), item]})
       patchState(store, {loading: false});
+    },
+    updateOne(item: Movie) {
+      patchState(store, {loading: true});
+
+      const movieToUpdate = store.items().find(movie => item.id === movie.id);
+      if(movieToUpdate) { // type guard
+        movieToUpdate.description = item.description;
+        movieToUpdate.title = item.title;
+
+        // should be bugger ;=)
+        patchState(store, {items: [...store.items(), item]});
+      }
+
+      patchState(store, {loading: false});
     }
   })),
   withComputed(store => ({
